@@ -6,9 +6,6 @@ def get_unique_job_types(path):
     return {job["job_type"] for job in jobs}
 
 
-""" print(get_unique_job_types("./src/jobs.csv")) """
-
-
 def filter_by_job_type(jobs, job_type):
     return [job for job in jobs if job["job_type"] == job_type]
 
@@ -22,21 +19,7 @@ def get_unique_industries(path):
 
 
 def filter_by_industry(jobs, industry):
-    """Filters a list of jobs by industry
-
-    Parameters
-    ----------
-    jobs : list
-        List of jobs to be filtered
-    industry : str
-        Industry for the list filter
-
-    Returns
-    -------
-    list
-        List of jobs with provided industry
-    """
-    return []
+    return [job for job in jobs if job["industry"] == industry]
 
 
 def get_max_salary(path):
