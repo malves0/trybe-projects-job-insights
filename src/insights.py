@@ -1,7 +1,5 @@
 from src.jobs import read
 
-""" /home/malvs/Projects/sd-010-a-project-job-insights/src/jobs.py """
-
 
 def get_unique_job_types(path):
     jobs = read(path)
@@ -56,21 +54,12 @@ def filter_by_industry(jobs, industry):
 
 
 def get_max_salary(path):
-    """Get the maximum salary of all jobs
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    int
-        The maximum salary paid out of all job opportunities
-    """
-    pass
+    jobs = read(path)
+    list_salaries = {
+        job["max_salary"] for job in jobs if job["max_salary"].isdigit()
+    }
+    list_salaries = [int(value) for value in list_salaries]
+    return max(list_salaries)
 
 
 def get_min_salary(path):
