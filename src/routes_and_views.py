@@ -22,9 +22,8 @@ bp = Blueprint("client", __name__, template_folder="templates")
 
 
 @bp.route("/jobs/<index>")
-def job_by_index(index):
+def job(index):
     all_jobs = read(path="src/jobs.csv")
-    print(all_jobs)
     job = get_job(all_jobs, index)
     print(job)
     return render_template("job.jinja2", job=job)
