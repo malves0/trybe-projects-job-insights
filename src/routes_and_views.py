@@ -21,14 +21,6 @@ from .more_insights import (
 bp = Blueprint("client", __name__, template_folder="templates")
 
 
-@bp.route("/jobs/<index>")
-def job(index):
-    all_jobs = read(path="src/jobs.csv")
-    job = get_job(all_jobs, index)
-    print(job)
-    return render_template("job.jinja2", job=job)
-
-
 @bp.route("/")
 def index():
     with open("README.md", encoding="UTF-8") as file:
@@ -74,3 +66,10 @@ def list_jobs():
 
 def init_app(app: Flask):
     app.register_blueprint(bp)
+
+
+@bp.route("/job/<index>")
+def job(index):
+    all_jobs = read(path="src/jobs.csv")
+    job = get_job(all_jobs, int(index))
+    return render_template("job.jinja2", job=job)
